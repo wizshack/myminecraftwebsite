@@ -6,17 +6,33 @@
     <title>Chill Station</title>
     
     <style>
-        body {
-            background-image: url('background.jpg'); /* Change to your image file */
-            background-size: cover; /* Makes the image cover the whole page */
-            background-position: center; /* Centers the image */
-            background-repeat: no-repeat; /* Prevents tiling */
-            height: 100vh; /* Ensures full height */
-            color: white; /* Changes text color to white for visibility */
-            text-align: center; /* Centers text */
-            padding: 50px;
-        }
-    </style>
+    body {
+        background-image: url('discord.png'); /* Change this to your actual background image */
+        background-size: cover; /* Makes sure the image fits well */
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh; /* Instead of fixed height, allow scrolling */
+        color: white;
+        text-align: center;
+        padding: 50px;
+        overflow-y: auto; /* Ensures scrolling is enabled */
+    }
+
+    h1, p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px; /* Space between image and text */
+        flex-wrap: wrap; /* Ensures good wrapping on small screens */
+    }
+
+    img {
+        vertical-align: middle;
+        max-width: 100%; /* Prevents the image from getting too big */
+        height: auto;
+    }
+</style>
+
 </head>
 <body>
     <h1>@violet</h1>
