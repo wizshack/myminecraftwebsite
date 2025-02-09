@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chill Station</title>
+    
+    <style>
+    body {
+        background-image: url('background.jpg'); /* Keep original background */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        color: white;
+        padding: 50px;
+        text-align: center;
+    }
+    .sidebar {
+        position: absolute;
+        left: 20px;
+        top: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .audio-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    .audio-container img {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+        border-radius: 5px;
+    }
+    .audio-container audio {
+        width: 200px;
+        filter: brightness(80%) contrast(90%); /* Faint, less bright look */
+    }
+    .audio-title {
+        font-family: 'Arial', sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .center-song {
+        text-align: center;
+        margin-top: 50px;
+    }
+    .center-song iframe {
+        width: 278px;
+        height: 176px;
+        border-radius: 12px;
+    }
+    .top-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    .find-friends {
+        margin-top: 50px;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 10px;
+        display: inline-block;
+    }
+    .find-friends h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .find-friends input, .find-friends button {
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: none;
+    }
+    .find-friends button {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+    .player-list {
+        margin-top: 15px;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="MineLink.png" alt="MineLink Logo" style="max-width: 100%; height: auto; margin-bottom: 20px;">
+    </div>
+    <div class="top-title"></div>
+    
+    <div class="sidebar">
+        <div class="audio-container">
+            <img src="Minecraftsongthumbnail.jpeg" alt="Key Thumbnail">
+            <div>
+                <div class="audio-title">Key</div>
+                <audio controls><source src="01 - Key.mp3" type="audio/mpeg"></audio>
+            </div>
+        </div>
+        <div class="audio-container">
+            <img src="Minecraftsongthumbnail.jpeg" alt="Door Thumbnail">
+            <div>
+                <div class="audio-title">Door</div>
+                <audio controls><source src="02 - Door.mp3" type="audio/mpeg"></audio>
+            </div>
+        </div>
+        <div class="audio-container">
+            <img src="Minecraftsongthumbnail.jpeg" alt="Subwoofer Lullaby Thumbnail">
+            <div>
+                <div class="audio-title">Subwoofer Lullaby</div>
+                <audio controls><source src="03 - Subwoofer Lullaby.mp3" type="audio/mpeg"></audio>
+            </div>
+        </div>
+        <div class="audio-container">
+            <img src="Minecraftsongthumbnail.jpeg" alt="Death Thumbnail">
+            <div>
+                <div class="audio-title">Death</div>
+                <audio controls><source src="04 - Death.mp3" type="audio/mpeg"></audio>
+            </div>
+        </div>
+        <div class="audio-container">
+            <img src="Minecraftsongthumbnail.jpeg" alt="Living Mice Thumbnail">
+            <div>
+                <div class="audio-title">Living Mice</div>
+                <audio controls><source src="05 - Living Mice.mp3" type="audio/mpeg"></audio>
+            </div>
+        </div>
+    </div>
+    
+    <div class="center-song">
+        <iframe src="https://open.spotify.com/embed/track/6xwhCiWXREsAIQVZqHswVw?utm_source=generator" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="audio-title"></div>
+        <audio controls><source src="08 - Minecraft.mp3" type="audio/mpeg"></audio>
+    </div>
+    
+    <div class="find-friends">
+        <h2>Find Friends to Play With</h2>
+        <p>Enter your username to connect with other nostalgic players.</p>
+        <input type="text" id="username" placeholder="Enter your username">
+        <button onclick="addPlayer()">Find Players</button>
+        <div class="player-list" id="playerList">
+            <h3>Connected Players</h3>
+            <ul id="playerNames"></ul>
+        </div>
+    </div>
+    
+    <script>
+        function addPlayer() {
+            let usernameInput = document.getElementById("username");
+            let username = usernameInput.value.trim();
+            if (username) {
+                let playerList = document.getElementById("playerNames");
+                let newPlayer = document.createElement("li");
+                newPlayer.textContent = `Posted: ${username}`;
+                playerList.appendChild(newPlayer);
+                localStorage.setItem("players", playerList.innerHTML); // Save to local storage
+                usernameInput.value = ""; // Clear input field after submission
+            }
+        }
+        
+        // Load saved players on page refresh
+        window.onload = function() {
+            let savedPlayers = localStorage.getItem("players");
+            if (savedPlayers) {
+                document.getElementById("playerNames").innerHTML = savedPlayers;
+            }
+        }
+    </script>
+</body>
+</html>
